@@ -90,7 +90,7 @@ carry out data analysis."
         - Ex: Using **text analysis** algorithms to better understand Yelp or Twitter data
     + When working with predictive problems 
         - Ex: Using a **random forest model** to predict outcomes
-    + when helping us acquire data to formulate our question 
+    + When helping us acquire data to formulate our question 
         - Ex: Using **scraping** and **wrangling** tools to acquire data on the web
 
 
