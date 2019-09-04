@@ -4,14 +4,26 @@ author: "ECON 122"
 date: "Day 2"
 output: 
   ioslides_presentation:
-    incremental: true
+    incremental: false
     widescreen: true
     keep_md: false
+  github_document: default
+  beamer_presentation:
+    incremental: false
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(collapse=TRUE, prompt=TRUE, eval=TRUE, message=F, include=T,comment=NULL)
 ```
+
+## Quick Comment: Re-compiling Lecture Slides
+
+- While click-through slides are useful for presentations, they may not be the best to review
+- You can `Knit` the `.Rmd` file for the slides into a more conveient format
+    - You can turn `incremental` off
+    - You can output it to an `md` file
+    - You can output it as `beamer_presentation`
+    
 
 ## Quick Comment: Files on GitHub {.build}
 
