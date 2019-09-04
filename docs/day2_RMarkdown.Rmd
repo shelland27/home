@@ -4,7 +4,7 @@ author: "ECON 122"
 date: "Day 2"
 output: 
   ioslides_presentation:
-    incremental: false
+    incremental: true
     widescreen: true
     keep_md: false
   github_document: default
