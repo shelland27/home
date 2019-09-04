@@ -24,7 +24,7 @@ Textbook: [Modern Data Science with R](https://mdsr-book.github.io/) (1st editio
     - Try to set up R, RStudio, Git, GitHub account (See [GitHub reference](https://github.com/jfiksel/github-classroom-for-students))
 -   in class: 
     -   day 1 slides: [.Rmd](docs/day1_IntroSlides.Rmd) [.html](https://econ122-f19.github.io/home/day1_IntroSlides.html)
-    -   [test assignment](https://classroom.github.com/a/MAIXKt_C)
+    -   [test assignment](https://classroom.github.com/a/SVGJxcTY)
 
 **Thursday** (reproducibility, R Markdown)
 
