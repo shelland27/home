@@ -55,7 +55,7 @@ Textbook: [Modern Data Science with R](https://mdsr-book.github.io/) (1st editio
     -   read MDSR sections 3.1 and 3.2. Section 3.3 contains some `dplyr` work that I will save for discussion in chapter 4.
     -   read Grolemund/Wickham [sections 3.1 - 3.5](http://r4ds.had.co.nz/data-visualisation.html)    
 -   in class: 
-    -   day 4 slides: [.Rmd](docs/day5_ggplotSlides.Rmd) [.html](https://econ122-f19.github.io/home/day5_ggplotSlides.html)
-    -   day 4 activity: [.Rmd](activities/day5_ggplotActivity.Rmd) [.md](activities/day5_ggplotActivity.md)
+    -   day 4 slides: [.Rmd](docs/day4_ggplotSlides.Rmd) [.html](https://econ122-f19.github.io/home/day4_ggplotSlides.html)
+    -   day 4 activity: [.Rmd](activities/day4_ggplotActivity.Rmd) [.md](activities/day4_ggplotActivity.md)
 
 ------------------------------------------------------------------------
