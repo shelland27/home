@@ -18,7 +18,7 @@ knitr::opts_chunk$set(collapse=TRUE, prompt=TRUE, eval=TRUE, message=F, include=
 
 ## Quick Comment: Re-compiling Lecture Slides
 
-- While click-through slides are useful for presentations, they may not be the best to review
+- While click-through slides are useful for presentations, they may not be the best for review
 - You can `Knit` the `.Rmd` file for the slides into a more conveient format
     - You can turn `incremental` off
     - You can output it to an `md` file
