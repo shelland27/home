@@ -131,7 +131,7 @@ loans <- read.csv("http://raw.githubusercontent.com/mgelman/data/master/CreditDa
     
 ## Writing a R Markdown document | 1. Formatting text
 
-- References: [Hadley's page](http://r4ds.had.co.nz/r-markdown.html), [Rstudio page](http://rmarkdown.rstudio.com/authoring_basics.html)
+- References: [Hadley's page](http://r4ds.had.co.nz/r-markdown.html), [Rstudio page](http://rmarkdown.rstudio.com/authoring_basics.html), [RStudio cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
 - Simple  rules for 
     + section headers (`#`,`##`,etc)
     + lists (need ~2 tabs to create sublists)
@@ -214,13 +214,13 @@ cat("```{r ChunkName1}
     + github_document (creates a .md Markdown doc)
     + ioslides_presentation, beamer_presentation
 - each output type can be further refined with formatting options
-    + e.g. for these slides I specify `widescreen=true`, `incremental=true`, and `keep_md=true`
+    + e.g. for these slides I specify `widescreen=true`, `incremental=true`, and `keep_md=false`
     + for documents, you might use `fig.caption=true`
 - for help: in Rstudio select `Help > Cheatsheets > R Markdown Reference Guide`
 
 ## Final comments
 
-- Start working towards writing reproducible analyzes
+- Start working towards writing reproducible analysis
     + doesn't happen overnight
     + using R Markdown is a good start!
     + I don't expect you to use inline code for all your assignments

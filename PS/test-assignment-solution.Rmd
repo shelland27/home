@@ -1,0 +1,115 @@
+---
+title: "Test activity: Loan default EDA - solution"
+author: "ECON 122"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse=TRUE, prompt=TRUE,comment=NULL,  message=F, include=TRUE)
+library(knitr)
+```
+
+## First steps
+Make sure you completed the steps in this test assignment's GitHub README file. Keep the output type for this .Rmd a `github_document`.   
+
+## To Do: Complete before Friday's class (9/5/19)
+Use full sentences to answer the questions below. Provide your answer and, if needed, an R chunk used to answer the question. You should be able to complete questions 1-4 with a little review of intro stats R commands. Give questions 5 and 6 a try even if you can't fully answer them. 
+ 
+
+## Data description:
+The data for today's review example is a "classic" German credit data set. Each entry in the data set represents a loan given by the bank, along personal characteristics of the person the loan was given to, the type of loan and whether or not they paid it off or defaulted.  At the time, the deutsch mark was the unit of currency so an "DM" in the dataset refers to that unit of measurement. One of the main questions about this dataset is to understand factors associated with a loan defaulting (or not). For this analysis the variable `Good.Loan` indicates whether a loan was paid off (`GoodLoan`) or whether it defaulted (`BadLoan`).
+
+```{r}
+loans <- read.csv("http://raw.githubusercontent.com/mgelman/data/master/day1CreditData.csv")
+str(loans)
+```
+
+
+## 1. Data basics
+How many loan cases are in the data? How many variables?
+
+*answer:* There are `r nrow(loans)` cases in the data set and `r ncol(loans)` variables. 
+
+```{r}
+# R chunk for questions above (if needed)
+dim(loans)
+```
+
+We will not use all the variables in this handout. Here is a brief description of the variables used in this handout:
+
+Variable | description
+------------------- | -------------------------------------------------
+`r names(loans)[2]` | loan length in months
+`r names(loans)[5]` |  amount of loan (in DM)
+`r names(loans)[21]` |  did the loan default or not
+
+## 2. Default rate
+What percentage of loans in this dataset defaulted? 
+
+
+```{r}
+table(loans$Good.Loan)
+props <- prop.table(table(loans$Good.Loan))
+props
+```
+
+*answer:* About `r round(100*props[1],1)`% of these loans defaulted.
+
+## 3. Default rate by duration
+What is the average loan duration in this data? Of the loans that defaulted, What percent have a duration of 2 years or less? More than 2 years?
+
+```{r}
+summary(loans$Duration.in.month)
+default <- loans$Good.Loan == "BadLoan"
+mean(default)
+# of defaults, what % <= 24?
+perc.24less<- mean(loans$Duration.in.month[default] <=24)
+perc.24less
+1-perc.24less
+```
+
+*answer:* The average loan duration is `r round(mean(loans$Duration.in.month),1)` months. Of the loans that defaulted, `r round(100*perc.24less,1)`% have a duration of 2 years or less. `r round(100*(1-perc.24less),1)`% have a duration of more than two years
+
+## 4. Default rate and credit amount
+What is the median credit amount for loans that defaulted? for loans that didn't default? Create a graph that that shows the credit amount distribution for each type of loan (good vs. bad), then compare these distributions.
+
+```{r}
+summary(loans$Credit.amount)
+meds <- tapply(loans$Credit.amount, loans$Good.Loan, median)
+meds
+```
+
+*answer:* The median credit amount for loans that defaulted was `r round(meds[1],1)` DM, while the median amount for good loans was `r round(meds[2],1)` DM.
+
+```{r}
+boxplot(Credit.amount ~ Good.Loan, data=loans)
+```
+
+## 5. A default prediction model
+Suppose that Barb the data scientist generates the following model criteria to predict when a loan will default. A loan will default if either criteria below is met:
+
+- Duration is longer than 2 years and credit amount is greater than 10,000 DM.
+- Duration is 2 years or less and credit amount is less than 2200 DM.
+
+Use this model to predict defaults for the loan data. (Hint: You will likely need to use the "and" operator `&`.) Then use the actual and predicted default variables to find the following rates:
+
+- What is the model's *accuracy* rate, i.e. the percentage of all loans that are correctly classified as good or bad? 
+- What is the model's *false positive rate*, i.e. the percentage of good loans that are predicted to default (a "positive" result)? (This is 1 minus the *specificity* of the model)
+- What is the model's *false negative rate*, i.e. the percentage of bad loans that are predicted to not default (a "negative" result)? (This is 1 minus the *sensitivity* of the model)
+
+```{r}
+pred.Default1 <- ifelse(loans$Duration.in.month > 24 & loans$Credit.amount > 10000,"predBad","predGood")
+table(pred.Default1)
+pred.Default <- ifelse(loans$Duration.in.month <= 24 & loans$Credit.amount < 2200,"predBad",pred.Default1)
+table(pred.Default1,pred.Default)
+table(loans$Good.Loan,pred.Default)
+props.all<- prop.table(table(loans$Good.Loan,pred.Default))
+props.all
+props.byrow<- prop.table(table(loans$Good.Loan,pred.Default),1)
+props.byrow
+```
+
+*answer:* For this data, the accuracy rate for this model is `r round(100*(props.all[1,1]+props.all[2,2]),1)`%. The false positive rate is `r round(100*props.byrow[2,1],1)`% and the false negative rate is `r round(100*props.byrow[1,2],1)`%.
+
+## 6. Try your default prediction model
+Try changing one or two parts of Barb's simple default criteria and see if you can get a better rates than Barb (higher accuracy and/or lower false rates). 
